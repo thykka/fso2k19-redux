@@ -17,6 +17,7 @@ const App = () => {
       <button onClick={good}>hyvä</button> 
       <button>neutraali</button> 
       <button>huono</button>
+      <button>nollaa tilastot</button>
       <div>hyvä {store.getState().good}</div>
       <div>neutraali</div>
       <div>huono</div>
