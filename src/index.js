@@ -1,12 +1,32 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
+import ReactDOM from 'react-dom'
+import { createStore } from 'redux'
+import reducer from './reducer'
 
-ReactDOM.render(<App />, document.getElementById('root'));
+const store = createStore(reducer)
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: http://bit.ly/CRA-PWA
-serviceWorker.unregister();
+const App = () => {
+  const good = () => {
+    store.dispatch({
+      type: 'GOOD'
+    })
+  }
+
+  return (
+    <div>
+      <button onClick={good}>hyvä</button> 
+      <button>neutraali</button> 
+      <button>huono</button>
+      <div>hyvä {store.getState().good}</div>
+      <div>neutraali</div>
+      <div>huono</div>
+    </div>
+  )
+}
+
+const renderApp = () => {
+  ReactDOM.render(<App />, document.getElementById('root'))
+}
+
+renderApp()
+store.subscribe(renderApp)
